@@ -13,15 +13,16 @@
         <th>Photo ID</th>
         <th>Photo</th>
     </tr>
-  <%--  <c:forEach items="${photos}" var="photoId"> --%>
+    <c:forEach items="${photos}" var="photoId">
         <tr>
-            <td><form:checkboxes items="${photos}" path="photos"/></td>
+          <%--  <td><form:checkboxes items="${photos}" path="photos"/></td> --%>
             <td>${photoId}</td>
          <%--   <td>${photoMap.value}</td> --%>
-        <%--    <td><img src="/photo/${photoId}" height="150"/></td> --%>
+           <td><img src="/photo/${photoId}" height="150"/></td>
         </tr>
  <%--   </c:forEach> --%>
 </table>
+    <form:input path=""
     <input type="submit" value="test" />
     </form:form>
 <br />
