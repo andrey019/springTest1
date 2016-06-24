@@ -11,19 +11,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Controller
 @RequestMapping("/")
 public class MyController {
 
-    //private Map<Long, byte[]> photos = new ConcurrentHashMap<>();
-
 
     @RequestMapping("/")
     public String onIndex() {
-        System.out.println("!!!!! index access !!!!!");
         return "index";
     }
 
@@ -31,7 +26,6 @@ public class MyController {
     public ModelAndView onAllPics() {
         DeleteOrZip deleteOrZip = new DeleteOrZip(Data.getPhotos().keySet());
         ModelAndView modelAndView = new ModelAndView("allpics", "deletezip", deleteOrZip);
-        System.out.println("!!!!! allpics access !!!!!!");
         return modelAndView;
     }
 
@@ -49,15 +43,13 @@ public class MyController {
     }
 
     @RequestMapping(value = "/allpics", params = "delete")
-    public ModelAndView deletePhotos (@ModelAttribute("deletezip") DeleteOrZip deleteOrZip) {
+    public String deletePhotos (@ModelAttribute("deletezip") DeleteOrZip deleteOrZip) {
         if (deleteOrZip.getPhotosDelete() != null) {
             for (Long number : deleteOrZip.getPhotosDelete()) {
                 Data.getPhotos().remove(number);
             }
         }
-        deleteOrZip = new DeleteOrZip(Data.getPhotos().keySet());
-        ModelAndView modelAndView = new ModelAndView("allpics", "deletezip", deleteOrZip);
-        return modelAndView;
+        return "redirect:allpics";
     }
 
     @RequestMapping(value = "/add_photo", method = RequestMethod.POST)
@@ -100,7 +92,7 @@ public class MyController {
             throw new PhotoNotFoundException();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        headers.setContentType(MediaType.IMAGE_JPEG);
 
         return new ResponseEntity<byte[]>(bytes, headers, HttpStatus.OK);
     }

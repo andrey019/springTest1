@@ -22,13 +22,9 @@
         </tr>
     </c:forEach>
 </table>
-
-
-   <%-- <form:radiobutton path="deleteOrZip" value="d"/>delete <form:radiobutton path="deleteOrZip" value="z"/>zip --%>
-    
+    <br />
     <input type="submit" class="button" name="delete" value="delete photos">
     <input type="submit" class="button" name="zip" value="zip photos">
-    <input type="submit" value="test" />
     </form:form>
 <br />
 

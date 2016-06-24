@@ -10,6 +10,7 @@
 
             <input type="submit" value="Delete Photo" onclick="window.location='/delete/${photo_id}';" />
             <input type="submit" value="Upload New" onclick="window.location='/';" />
+            <input type="submit" value="show all" onclick="window.location='allpics';"/>
 
             <br/><br/><img src="/photo/${photo_id}" />
         </div>

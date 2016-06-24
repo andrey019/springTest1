@@ -1,6 +1,5 @@
 package stupid;
 
-
 import java.io.*;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
