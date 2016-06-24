@@ -7,26 +7,30 @@
 </head>
 <body>
 <h2>All photos</h2>
-<form:form method="POST" action="/test">
+<form:form method="POST" action="/allpics" modelAttribute="deletezip">
 <table>
     <tr>
         <th>Photo ID</th>
         <th>Photo</th>
+        <th>Checkbox</th>
     </tr>
-    <c:forEach items="${photos}" var="photoId">
+    <c:forEach items="${deletezip.photosId}" var="photoId" varStatus="photoLoop">
         <tr>
-          <%--  <td><form:checkboxes items="${photos}" path="photos"/></td> --%>
             <td>${photoId}</td>
-         <%--   <td>${photoMap.value}</td> --%>
-           <td><img src="/photo/${photoId}" height="150"/></td>
+            <td><img src="/photo/${photoId}" height="150"/></td>
+            <td><form:checkbox path="photosDelete" value="${photoId}"/></td>
         </tr>
- <%--   </c:forEach> --%>
+    </c:forEach>
 </table>
-    <form:input path=""
+
+
+   <%-- <form:radiobutton path="deleteOrZip" value="d"/>delete <form:radiobutton path="deleteOrZip" value="z"/>zip --%>
+    
+    <input type="submit" class="button" name="delete" value="delete photos">
+    <input type="submit" class="button" name="zip" value="zip photos">
     <input type="submit" value="test" />
     </form:form>
 <br />
-<%-- <input type="button" value="Back" onclick="javascript:history.back()" /> --%>
 
 <form action="/">
     <input type="submit" value="home page">
